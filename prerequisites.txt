@@ -1,0 +1,5 @@
+Libraries/modules needed;
+
+1. Kubernetes
+2. more_itertools
+3. Flask
