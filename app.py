@@ -52,4 +52,15 @@ def listServices():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
+@app.route("/getnodes", methods=["GET"])
+def listNodes():
+    try:
+        return jsonify(Kubefront.getNodes())
+
+    except FileNotFoundError:
+        return 'A kube config was not found in your users profile'
+
+    except SyntaxError:
+        return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
+
 app.run(port=5000, debug=True)

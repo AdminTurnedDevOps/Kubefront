@@ -1,7 +1,9 @@
 from kubernetes import client, config
 import Initconnection
 import Logging
-from more_itertools import unique_everseen 
+from more_itertools import unique_everseen
+import json
+import os
 
 class Kubefront:
 
@@ -57,3 +59,17 @@ class Kubefront:
                 output.append(f'{service.metadata.name}')
 
         return list(unique_everseen(output))
+
+    def getNodes():
+        Initconnection.Initconnection.loadConfig()
+        Logging.Logging.log('Retrieving Nodes')
+        apiV1 = client.CoreV1Api()
+        nodes = apiV1.list_node()
+        endpoints = []
+        for node in nodes.items:
+            if node is None:
+                Logging.Logging.log('No nodes found')
+            else:
+                endpoints.append(f'{node.metadata.name}')
+
+        return list(unique_everseen(endpoints))
