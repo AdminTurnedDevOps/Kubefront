@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from kubernetes import client, config
 from Kubefront import Kubefront
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 
