@@ -10,11 +10,11 @@ def create_app():
 
     return app
 
-@create_app.route("/")
+@app.route("/")
 def welcome():
     return "Welcome to the Kubefront API!"
 
-@create_app.route("/getnamespaces", methods=['GET'])
+@app.route("/getnamespaces", methods=['GET'])
 def listNamespaces():
     try:
         return jsonify(Kubefront.getNamespaces())
@@ -25,7 +25,7 @@ def listNamespaces():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-@create_app.route("/getpods", methods=["GET"])
+@app.route("/getpods", methods=["GET"])
 def listPods():
     try:
         return jsonify(Kubefront.getPods())
@@ -36,7 +36,7 @@ def listPods():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-@create_app.route("/getdeployments", methods=["GET"])
+@app.route("/getdeployments", methods=["GET"])
 def listDeployments():
     try:
         return jsonify(Kubefront.getDeployments())
@@ -47,7 +47,7 @@ def listDeployments():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-@create_app.route("/getservices", methods=["GET"])
+@app.route("/getservices", methods=["GET"])
 def listServices():
     try:
         return jsonify(Kubefront.getServices())
@@ -58,7 +58,7 @@ def listServices():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-@create_app.route("/getnodes", methods=["GET"])
+@app.route("/getnodes", methods=["GET"])
 def listNodes():
     try:
         return jsonify(Kubefront.getNodes())
@@ -69,4 +69,4 @@ def listNodes():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-create_app.run(port=5000, debug=True)
+app.run(port=5000, debug=True)
