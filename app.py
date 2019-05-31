@@ -3,13 +3,18 @@ from kubernetes import client, config
 from Kubefront import Kubefront
 from flask_bootstrap import Bootstrap
 
-app = Flask(__name__)
+# app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
+    Bootstrap(app)
 
-@app.route("/")
+    return app
+
+@create_app.route("/")
 def welcome():
     return "Welcome to the Kubefront API!"
 
-@app.route("/getnamespaces", methods=['GET'])
+@create_app.route("/getnamespaces", methods=['GET'])
 def listNamespaces():
     try:
         return jsonify(Kubefront.getNamespaces())
@@ -20,7 +25,7 @@ def listNamespaces():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-@app.route("/getpods", methods=["GET"])
+@create_app.route("/getpods", methods=["GET"])
 def listPods():
     try:
         return jsonify(Kubefront.getPods())
@@ -31,7 +36,7 @@ def listPods():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-@app.route("/getdeployments", methods=["GET"])
+@create_app.route("/getdeployments", methods=["GET"])
 def listDeployments():
     try:
         return jsonify(Kubefront.getDeployments())
@@ -42,7 +47,7 @@ def listDeployments():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-@app.route("/getservices", methods=["GET"])
+@create_app.route("/getservices", methods=["GET"])
 def listServices():
     try:
         return jsonify(Kubefront.getServices())
@@ -53,7 +58,7 @@ def listServices():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-@app.route("/getnodes", methods=["GET"])
+@create_app.route("/getnodes", methods=["GET"])
 def listNodes():
     try:
         return jsonify(Kubefront.getNodes())
@@ -64,4 +69,4 @@ def listNodes():
     except SyntaxError:
         return 'A syntax error occured in your functions. Please check for any red lines under code in an IDE'
 
-app.run(port=5000, debug=True)
+create_app.run(port=5000, debug=True)
