@@ -7,8 +7,8 @@ app = Flask(__name__)
 Bootstrap(app)
 
 @app.route("/")
-def welcome():
-    return "Welcome to the Kubefront API!"
+def index():
+    return render_template('index.html')
 
 @app.route("/getnamespaces", methods=['GET'])
 def listNamespaces():
