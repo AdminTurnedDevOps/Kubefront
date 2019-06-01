@@ -3,3 +3,6 @@ Libraries/modules needed;
 1. Kubernetes
 2. more_itertools
 3. Flask
+4. flask_bootstrap (v3.3.7)
+   - https://pythonhosted.org/Flask-Bootstrap/basic-usage.html#sample-application
+   - https://getbootstrap.com/docs/3.3

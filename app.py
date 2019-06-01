@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 from kubernetes import client, config
 from Kubefront import Kubefront
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+Bootstrap(app)
 
 @app.route("/")
-def welcome():
-    return "Welcome to the Kubefront API!"
+def index():
+    return render_template('index.html')
 
 @app.route("/getnamespaces", methods=['GET'])
 def listNamespaces():
