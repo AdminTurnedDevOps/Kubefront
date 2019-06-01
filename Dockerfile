@@ -17,6 +17,7 @@ RUN apt-get update -y
 RUN pip3 install Flask
 RUN pip3 install Kubernetes
 RUN pip3 install more_itertools
+RUN pip3 install flask_bootstrap
 
 RUN apt-get install curl -y
 RUN apt-get update && apt-get install -y apt-transport-https -y
