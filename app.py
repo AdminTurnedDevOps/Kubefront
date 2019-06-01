@@ -3,12 +3,8 @@ from kubernetes import client, config
 from Kubefront import Kubefront
 from flask_bootstrap import Bootstrap
 
-# app = Flask(__name__)
-def create_app():
-    app = Flask(__name__)
-    Bootstrap(app)
-
-    return app
+app = Flask(__name__)
+Bootstrap(app)
 
 @app.route("/")
 def welcome():
